@@ -1,0 +1,2 @@
+module MilksHelper
+end

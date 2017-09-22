@@ -1,0 +1,22 @@
+<%= form_with(model: milk, local: true) do |form| %>
+  <% if milk.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(milk.errors.count, "error") %> prohibited this milk from being saved:</h2>
+
+      <ul>
+      <% milk.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :milk_name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
