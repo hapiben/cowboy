@@ -1,0 +1,21 @@
+version: '2'
+services:
+  cowboy:
+    image: hapiben/cowboy
+    environment:
+      COWBOY_DATABASE_PASSWORD: boost
+      COWBOY_DATABASE_HOST: db
+      COWBOY_DATABASE_PORT: '3306'
+    stdin_open: true
+    external_links:
+    - mysql/mysql:db
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
+  cowboy-lb:
+    image: rancher/lb-service-haproxy:v0.7.9
+    ports:
+    - 80:80/tcp
+    labels:
+      io.rancher.container.agent.role: environmentAdmin
+      io.rancher.container.create_agent: 'true'
